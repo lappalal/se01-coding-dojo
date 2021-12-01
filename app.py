@@ -52,9 +52,9 @@ def boardShower():
         print(showBoard[column])
 
 # accept player input
-# boardShower()
-# move = input ("Which cell to unveil? ")
-# currentMove = move.split()
+#boardShower()
+#move = input ("Which cell to unveil? ")
+#currentMove = move.split()
 
 print(counter)
 
