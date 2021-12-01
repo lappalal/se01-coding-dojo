@@ -1,28 +1,32 @@
-# Get Board input in different rows
-boardRowOne = input('Please enter the first row of the board: ')
-boardRowTwo = input('Please enter the second row of the board: ')
-boardRowThree = input('Please enter the third row of the board: ')
+# Collect the rows in a multidimensional list
+board = [['.','.','*'], ['.','.','.'], ['.','*','.']]
 
-# Collect the rows in a multidimensional array
-board = [boardRowOne.split(), boardRowTwo.split(), boardRowThree.split()]
+# Get adjacent cells
+def adjacentCells(position):
+    adj = []
+    
+    for row in range(-1, 2):
+        for column in range(-1, 2):
 
+            (newX, newY) = (position[0]+row, position[1]+column)  # adjacent cell
+            
+            if (newX in range(0, len(board[0]))) and (newY in range(0,len(board))) and (row, column) != (0, 0):
+                adj.append((newX, newY))
+    
+    return adj
 
 # Check if any given spot is a mine
 def isMine(spot):
     if spot == '*':
-        return True
+        True
     else:
         False
 
-# Iterate over every spot on the board
-for row in range(len(board)):
-    for spot in range(len(board[row])):
-        print(spot)
-
-        # Take the first spot in every row and check the field left of it
-        if spot == 0:
-            print(spot)
-            if isMine(spot) == True:
-                print('Is Mine!')
-            else:
-                print('Not Mine!')
+# Iterate over every cell to check adjacent cells for mines
+for column in range(len(board)):
+    for row in range(len(board[column])):
+        cell = [row,column]
+        #print(adjacentCells(cell))
+        for mine in range(len(adjacentCells(cell))):
+            if isMine(adjacentCells(cell)[mine]) == True:
+                print(cell)
