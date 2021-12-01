@@ -23,17 +23,21 @@ def adjacentCells(position):
 def isMine(x):
     return board[x[0]][x[1]] == '*'
 
-# Iterate over every cell to check adjacent cells for mines
+# Create the output board based on the dimensions of the input board
 width, height = len(board[0]), len(board)
 counter = [[0 for x in range(width)] for y in range(height)]
 
+# Iterate over every cell to check adjacent cells for mines
 for column in range(len(board)):
     for row in range(len(board[column])):
         cell = [row,column]
+
+        # check for mines, if there is a mine in an adjacent field, update the counter
         for mine in range(len(adjacentCells(cell))):
             if isMine(adjacentCells(cell)[mine]) == True:
                 counter[cell[0]][cell[1]] = counter[cell[0]][cell[1]] + 1
-        
+
+# go over counter once more to put the mines back in
 for column in range(len(board)):
     for row in range(len(board[column])):
         cell = [row,column]
