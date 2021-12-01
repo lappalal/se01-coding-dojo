@@ -11,28 +11,25 @@ def adjacentCells(position):
 
             (newX, newY) = (position[0]+row, position[1]+column)  # adjacent cell
             
+            # create list of all adjacent cells
             if (newX in range(0, len(board[0]))) and (newY in range(0,len(board))) and (row, column) != (0, 0):
                 adj.append([newX, newY])
     
     return adj
 
-print(adjacentCells([0,0]))
-
 # Check if any given spot is a mine
 # input as [0,0]
 def isMine(x):
-    print(board[x[0]][x[1]])
-    if board[x[0]][x[1]] == '*':
-        True
-    else:
-        False
-
-print(board[0][2])
-print(isMine([0,2]))
+    return board[x[0]][x[1]] == '*'
 
 # Iterate over every cell to check adjacent cells for mines
 for column in range(len(board)):
     for row in range(len(board[column])):
         cell = [row,column]
+        counter = [[0,0,0],[0,0,0],[0,0,0]]
         for mine in range(len(adjacentCells(cell))):
-            continue
+            if isMine(adjacentCells(cell)[mine]) == True:
+                counter[cell[0]][cell[1]] = '*'
+                print(counter)
+            elif isMine(adjacentCells(cell)[mine]) == False:
+                counter[cell[0]][cell[1]] = int(counter[cell[0]][cell[1]]) + 1
