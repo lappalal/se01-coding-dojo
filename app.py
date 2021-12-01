@@ -1,5 +1,5 @@
 # Collect the rows in a multidimensional list
-board = [['.','.','*'], ['.','.','.'], ['.','*','.']]
+board = [['.','.','*',], ['.','.','.'], ['.','*','.']]
 
 # Get adjacent cells
 # position is a list [0,0]
@@ -23,13 +23,13 @@ def isMine(x):
     return board[x[0]][x[1]] == '*'
 
 # Iterate over every cell to check adjacent cells for mines
+counter = [[0,0,0,], [0,0,0], [0,0,0]]
+
 for column in range(len(board)):
     for row in range(len(board[column])):
         cell = [row,column]
-        counter = [[0,0,0],[0,0,0],[0,0,0]]
         for mine in range(len(adjacentCells(cell))):
             if isMine(adjacentCells(cell)[mine]) == True:
-                counter[cell[0]][cell[1]] = '*'
-                print(counter)
-            elif isMine(adjacentCells(cell)[mine]) == False:
-                counter[cell[0]][cell[1]] = int(counter[cell[0]][cell[1]]) + 1
+                counter[cell[0]][cell[1]] = counter[cell[0]][cell[1]] + 1
+        
+print(counter)
