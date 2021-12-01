@@ -1,6 +1,6 @@
 # Collect the rows in a multidimensional list
-board = [['.','.','*',], ['.','.','.'], ['.','*','.']]
-# board = [['.','.','*','.'], ['.','*','.','.'], ['.','*','.','.'], ['.','.','*','.']]
+# board = [['.','.','*',], ['.','.','.'], ['.','*','.']]
+board = [['.','.','*','.'], ['.','*','.','.'], ['.','*','.','.'], ['.','.','*','.']]
 
 # Create the output boards based on the dimensions of the input board
 width, height = len(board[0]), len(board)
