@@ -1,6 +1,13 @@
 # Collect the rows in a multidimensional list
-# board = [['.','.','*',], ['.','.','.'], ['.','*','.']]
-board = [['.','.','*','.'], ['.','*','.','.'], ['.','*','.','.'], ['.','.','*','.']]
+board = [['.','.','*',], ['.','.','.'], ['.','*','.']]
+# board = [['.','.','*','.'], ['.','*','.','.'], ['.','*','.','.'], ['.','.','*','.']]
+
+# Create the output boards based on the dimensions of the input board
+width, height = len(board[0]), len(board)
+counter = [[0 for x in range(width)] for y in range(height)]
+
+# Create board shown to player
+showBoard = [[' ' for x in range(width)] for y in range(height)]
 
 # Get adjacent cells
 # position is a list [0,0]
@@ -23,10 +30,6 @@ def adjacentCells(position):
 def isMine(x):
     return board[x[0]][x[1]] == '*'
 
-# Create the output board based on the dimensions of the input board
-width, height = len(board[0]), len(board)
-counter = [[0 for x in range(width)] for y in range(height)]
-
 # Iterate over every cell to check adjacent cells for mines
 for column in range(len(board)):
     for row in range(len(board[column])):
@@ -44,4 +47,19 @@ for column in range(len(board)):
         if isMine(cell) == True:
             counter[cell[0]][cell[1]] = '*'
 
+def boardShower():
+    for column in range(len(showBoard)):
+        print(showBoard[column])
+
+# accept player input
+# boardShower()
+# move = input ("Which cell to unveil? ")
+# currentMove = move.split()
+
 print(counter)
+
+"""
+Moving forward I would compare the move input to the counter list. 
+If it hits an integer, I reveal that, saving the updated board state in the showBoard list.
+If the player hits a mine, they get the message "game over"
+"""
